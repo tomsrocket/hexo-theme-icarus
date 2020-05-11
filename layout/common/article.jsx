@@ -28,16 +28,9 @@ module.exports = class extends Component {
         return <Fragment>
             {/* Main content */}
             <div class="card">
-                {/* Thumbnail */}
-                {has_thumbnail(page) ? <div class="card-image">
-                    {index ? <a href={url_for(page.link || page.path)} class="image is-7by3">
-                        <img class="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
-                    </a> : <span class="image is-7by3">
-                        <img class="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
-                    </span>}
-                </div> : null}
+
                 {/* Metadata */}
-                <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
+                <article class={`smd card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {page.layout !== 'page' ? <div class="article-meta size-small is-uppercase level is-mobile">
                         <div class="level-left">
                             {/* Date */}
@@ -56,7 +49,7 @@ module.exports = class extends Component {
                                 })()}
                             </span> : null}
                             {/* Read time */}
-                            {article && article.readtime && article.readtime === true ? <span class="level-item">
+                            {false && article && article.readtime && article.readtime === true ? <span class="level-item">
                                 {(() => {
                                     const words = getWordCount(page._content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
@@ -74,20 +67,103 @@ module.exports = class extends Component {
                         {index ? <a class="link-muted" href={url_for(page.link || page.path)}>{page.title}</a> : page.title}
                     </h1>
                     {/* Content/Excerpt */}
-                    <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
-                    {/* Tags */}
-                    {!index && page.tags && page.tags.length ? <div class="article-tags size-small is-uppercase mb-4">
-                        <span class="mr-2">#</span>
-                        {page.tags.map(tag => {
-                            return <a class="link-muted mr-2" rel="tag" href={url_for(tag.path)}>{tag.name}</a>;
-                        })}
-                    </div> : null}
+                    {page.content ? <div class="notification is-warning is-light">
+                        <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
+                    </div> : null }
+
+                    {/* {page.slug} */}
+
+                    <h2>Externer Link</h2>
+                    <div class="notification is-primary is-light">
+                        <i class="fas fa-external-link-alt"></i> <a target="_blank" href={page.external}>{page.external}</a>
+                    </div>
+  
+                    {page.tags && page.tags.length && page.tags[0] ? <div>
+                    <h2>Tags &amp; Schlagworte</h2>
+                    <div class="notification is-link is-light">
+                        {!index && page.tags && page.tags.length ? <div class="article--tags">
+                            {page.tags.map(tag => {
+                                return <a class="link-muted mr-2" rel="tag" href={url_for(tag.path)}><span class="tag is-link">{tag.name}</span></a>;
+                            })}
+                        </div> : null}
+                    </div></div> : null }
+
+                    <h2>Webseiten-Informationen</h2>
+                    <div class="notification is-info is-light">
+                    <table class="table is-striped is-hoverable">
+                        {/*<thead>
+                            <tr>
+                                <th class="is-warning" colspan="2">Spass/mit/Daten Crawler Status</th>
+                            </tr>
+                        </thead>*/}
+                        <tbody>
+                            <tr>
+                                <th>Sprache der Webseite</th>
+                                <td> {page.lang ? <img src={"/images/" + page.lang.toUpperCase() + ".svg"} class="flagg" /> : null}  {page.lang}</td>
+                            </tr>
+                            <tr>
+                                <th>Region</th>
+                                <td>{page.region}</td>
+                            </tr>
+                            <tr>
+                                <th>Typ</th>
+                                <td>{page.type}</td>
+                            </tr>
+                            <tr>
+                                <th>Rang</th>
+                                <td>{page.rank ? page.rank : '-'}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <h2>Crawler Status</h2>
+                    <div class="notification is-info is-light">
+                    <table class="table is-striped is-hoverable">
+                        {/*<thead>
+                            <tr>
+                                <th class="is-warning" colspan="2">Spass/mit/Daten Crawler Status</th>
+                            </tr>
+                        </thead>*/}
+                        <tbody>
+                            <tr>
+                                <th>Screenshot erstellt am</th>
+                                <td>{new Date(page.screenshotDate).toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+                            </tr>
+                            <tr>
+                                <th>Letzter Abruf</th>
+                                <td>{new Date(page.lastCrawlDate).toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</td>
+                            </tr>
+                            <tr>
+                                <th>Response-Größe</th>
+                                <td>{page.responseSize} Bytes</td>
+                            </tr>
+                            <tr>
+                                <th>HTTP-Status</th>
+                                <td>{page.responseCode}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+
+
+                    <h2>Webseiten-Screenshot</h2>
+                    <div class="notification is-info is-light">
+                        {/* Thumbnail */}
+                        {has_thumbnail(page) ? <div class="imgg">
+                            <span class="image">
+                                <img src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
+                            </span>}
+                        </div> : null}
+                    </div>
+
                     {/* "Read more" button */}
                     {index && page.excerpt ? <a class="article-more button is-small size-small" href={`${url_for(page.path)}#more`}>{__('article.more')}</a> : null}
                     {/* Share button */}
-                    {!index ? <Share config={config} page={page} helper={helper} /> : null}
+                    {!(true || index) ? <Share config={config} page={page} helper={helper} /> : null}
                 </article>
             </div>
+
             {/* Donate button */}
             {!index ? <Donates config={config} helper={helper} /> : null}
             {/* Post navigation */}
@@ -106,7 +182,7 @@ module.exports = class extends Component {
                 </div> : null}
             </nav> : null}
             {/* Comment */}
-            {!index ? <Comment config={config} page={page} helper={helper} /> : null}
+            {!(true || index) ? <Comment config={config} page={page} helper={helper} /> : null}
         </Fragment>;
     }
 };

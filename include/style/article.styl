@@ -3,6 +3,41 @@
  * --------------------------------- */
 $article-font-size ?= 1.1rem
 
+/* style for flag icon */
+
+.flagg
+    width: 20px
+
+.imgg .image img
+    max-width: 300px;
+
+/* our smd nifty headline style */
+
+.smd h2 
+    font-size: 1.5em
+    margin-top: 1em
+    font-weight: bold
+    text-transform: uppercase
+
+/* bulma light notifications are broken, dunno why */
+
+.notification.is-link.is-light 
+    background-color: #eef3fc;
+    color: #2160c4;
+
+.notification.is-primary.is-light 
+    background-color: #ebfffc;
+    color: #00947e;
+
+.notification.is-info.is-light
+    background-color: #eef6fc;
+    color: #1d72aa;
+
+.notification.is-warning.is-light
+    background-color: #fffbeb;
+    color: #947600;
+
+
 article
     &.media
         .media-content
@@ -73,7 +108,7 @@ article
 .thumbnail
     object-fit: cover
     width: 100% !important
-    height: 100% !important
+    // height: 100% !important
 
 // Overflow table
 .table-overflow
