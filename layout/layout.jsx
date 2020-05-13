@@ -13,6 +13,21 @@ module.exports = class extends Component {
 
         const language = page.lang || page.language || config.language;
         const columnCount = Widgets.getColumnCount(config.widgets);
+        const fathomJs = "<!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->\
+        <script>\
+        (function(f, a, t, h, o, m){\
+            a[h]=a[h]||function(){\
+                (a[h].q=a[h].q||[]).push(arguments)\
+            };\
+            o=f.createElement('script'),\
+            m=f.getElementsByTagName('script')[0];\
+            o.async=1; o.src=t; o.id='fathom-script';\
+            m.parentNode.insertBefore(o,m)\
+        })(document, window, '//tomo.input23.de/tracker.js', 'fathom');\
+        fathom('set', 'siteId', 'MATXQ');\
+        fathom('trackPageview');\
+        </script>\
+        <!-- / Fathom -->";
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head env={env} site={site} config={config} helper={helper} page={page} />
@@ -37,6 +52,7 @@ module.exports = class extends Component {
                 <Footer config={config} helper={helper} />
                 <Scripts site={site} config={config} helper={helper} page={page} />
                 <Search config={config} helper={helper} />
+                <div dangerouslySetInnerHTML={{__html: fathomJs}}></div>
             </body>
         </html>;
     }
