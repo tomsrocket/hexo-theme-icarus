@@ -75,7 +75,7 @@ module.exports = class extends Component {
 
                     <h2>Externer Link</h2>
                     <div class="notification is-primary is-light">
-                        <i class="fas fa-external-link-alt"></i> <a target="_blank" href={page.external}>{page.external}</a>
+                        <i class="fas fa-external-link-alt"></i> <a href={page.external}>{page.external}</a>
                     </div>
   
                     {page.tags && page.tags.length && page.tags[0] ? <div>
@@ -152,8 +152,8 @@ module.exports = class extends Component {
                         {/* Thumbnail */}
                         {has_thumbnail(page) ? <div class="imgg">
                             <span class="image">
-                                <img src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />
-                            </span>}
+                                <a href={page.external}><img src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} /></a>
+                            </span>
                         </div> : null}
                     </div>
 
@@ -164,8 +164,9 @@ module.exports = class extends Component {
                 </article>
             </div>
 
-            {/* Donate button */}
+            {/* Donate button 
             {!index ? <Donates config={config} helper={helper} /> : null}
+            */}
             {/* Post navigation */}
             {!index && (page.prev || page.next) ? <nav class="post-navigation mt-4 level is-mobile">
                 {page.prev ? <div class="level-start">

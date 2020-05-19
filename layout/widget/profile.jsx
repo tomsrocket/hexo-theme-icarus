@@ -34,7 +34,7 @@ class Profile extends Component {
                 <nav class="level">
                     <div class="level-item has-text-centered flex-shrink-1">
                         <div>
-                            <figure class="image is-128x128 mx-auto mb-2">
+                            <figure class="image is-250 mx-auto mb-2">
                                 <img class={avatarRounded ? 'is-rounded' : ''} src={avatar} alt={author} />
                             </figure>
                             {author ? <p class="title is-size-4 is-block line-height-inherit">{author}</p> : null}
@@ -46,10 +46,13 @@ class Profile extends Component {
                         </div>
                     </div>
                 </nav>
+                <div class="level has-text-centered">
+                    Die Linkliste für Datascience, Datenvisualisierung und Open Data.
+                </div>
                 <nav class="level is-mobile">
                     <div class="level-item has-text-centered is-marginless">
                         <div>
-                            <p class="heading">{counter.post.title}</p>
+                            <p class="heading">Links</p>
                             <a href={counter.post.url}>
                                 <p class="title">{counter.post.count}</p>
                             </a>
@@ -72,11 +75,13 @@ class Profile extends Component {
                         </div>
                     </div>
                 </nav>
-                {followLink ? <div class="level">
+
+                {/*followLink ? <div class="level">
                     <a class="level-item button is-primary is-rounded" href={followLink} target="_blank" rel="noopener">{followTitle}</a>
-                </div> : null}
+                </div> : null 
                 {socialLinks ? this.renderSocialLinks(socialLinks) : null}
-            </div>
+                */}
+                </div>
         </div>;
     }
 }
