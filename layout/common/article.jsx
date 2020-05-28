@@ -77,8 +77,7 @@ module.exports = class extends Component {
                     <div class="notification is-primary is-light">
                         <i class="fas fa-external-link-alt"></i> <a href={page.external}>{page.external}</a>
                     </div>
-  
-                    {page.tags && page.tags.length && page.tags[0] ? <div>
+                    {page.tags && page.tags.length ? <div>
                     <h2>Tags &amp; Schlagworte</h2>
                     <div class="notification is-link is-light">
                         {!index && page.tags && page.tags.length ? <div class="article--tags">
