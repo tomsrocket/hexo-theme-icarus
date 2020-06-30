@@ -3,6 +3,7 @@ const { Component, Fragment } = require('inferno');
 const Share = require('./share');
 const Donates = require('./donates');
 const Comment = require('./comment');
+const Related = require('./related');
 
 /**
  * Get the word count of text.
@@ -71,8 +72,6 @@ module.exports = class extends Component {
                         <div class="content" dangerouslySetInnerHTML={{ __html: index && page.excerpt ? page.excerpt : page.content }}></div>
                     </div> : null }
 
-                    {/* {page.slug} */}
-
                     <h2>Externer Link</h2>
                     <div class="notification is-primary is-light">
                         <i class="fas fa-external-link-alt"></i> <a href={page.external}>{page.external}</a>
@@ -86,6 +85,10 @@ module.exports = class extends Component {
                             })}
                         </div> : null}
                     </div></div> : null }
+
+
+                    {/* popular_posts( {}, page ) */}
+                    <Related config={config} page={page} helper={helper} />
 
                     <h2>Webseiten-Informationen</h2>
                     <div class="notification is-info is-light">
@@ -115,7 +118,6 @@ module.exports = class extends Component {
                         </tbody>
                     </table>
                     </div>
-
                     <h2>Crawler Status</h2>
                     <div class="notification is-info is-light">
                     <table class="table is-striped is-hoverable">
