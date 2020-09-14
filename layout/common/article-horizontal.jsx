@@ -20,10 +20,11 @@ module.exports = class extends Component {
     render() {
         const { config, helper, page, index } = this.props;
         const { article, plugins } = config;
-        const { has_thumbnail, get_thumbnail, url_for, date, date_xml, __, _p } = helper;
+        const { has_thumbnail, url_for, date, date_xml, __, _p } = helper;
 
         const indexLaunguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
+        const cover = page.thumbnail ? url_for(page.thumbnail) : null;
 
         return <Fragment>
             {/* Main content */}
@@ -31,7 +32,7 @@ module.exports = class extends Component {
                 <div class="card-image column is-one-fifth">
                     <figure class="image is-4by3">
                         <a href={url_for(page.link || page.path)}>
-                            <img class="thumbnail" src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} />             
+                            <img class="thumbnail" src={cover} alt={page.title || cover} />             
                         </a>
                     </figure>
                 </div>
