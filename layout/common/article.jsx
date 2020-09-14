@@ -26,7 +26,7 @@ module.exports = class extends Component {
 
         const indexLaunguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
-        const cover = page.cover ? url_for(page.cover) : null;
+        const cover = page.thumbnail ? url_for(page.thumbnail) : null;
 
         return <Fragment>
             {/* Main content */}
@@ -171,9 +171,9 @@ module.exports = class extends Component {
                     <h2>Webseiten-Screenshot</h2>
                     <div class="notification is-info is-light">
                         {/* Thumbnail */}
-                        {has_thumbnail(page) ? <div class="imgg">
+                        {cover ? <div class="imgg">
                             <span class="image">
-                                <a href={page.external}><img src={get_thumbnail(page)} alt={page.title || get_thumbnail(page)} /></a>
+                                <a href={page.external}><img src={cover} alt={page.title || cover} /></a>
                             </span>
                         </div> : null}
                     </div>
