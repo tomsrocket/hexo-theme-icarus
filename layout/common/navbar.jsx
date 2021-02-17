@@ -65,9 +65,10 @@ class Navbar extends Component {
                         {showToc ? <a class="navbar-item is-hidden-tablet catalogue" title={tocTitle} href="javascript:;">
                             <i class="fas fa-list-ul"></i>
                         </a> : null}
-                        {showSearch ? <a class="navbar-item search" title={searchTitle} href="javascript:;">
+                        {showSearch ? <><span class="navbar-item"><input class="input search" type="text" placeholder="Suchbegriff" /></span>
+                            <a class="navbar-item search" title={searchTitle} href="javascript:;">
                             <i class="fas fa-search"></i>
-                        </a> : null}
+                        </a></> : null}
                     </div>
                 </div>
             </div>
