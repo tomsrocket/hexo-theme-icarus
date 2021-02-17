@@ -32,7 +32,7 @@ module.exports = class extends Component {
             {/* Main content */}
             <div class="card">
 
-                {/* Thumbnail 
+                {/* Thumbnail
                 {cover ? <div class="card-image">
                     {index ? <a href={url_for(page.link || page.path)} class="image is-7by3">
                         <img class="fill" src={cover} alt={page.title || cover} />
@@ -46,11 +46,11 @@ module.exports = class extends Component {
                     {page.layout !== 'page' ? <div class="article-meta size-small is-uppercase level is-mobile">
                         <div class="level-left">
                             {/* Creation Date */}
-                            {page.date && <span class="level-item" dangerouslySetInnerHTML={{
+                            {false && page.date && <span class="level-item" dangerouslySetInnerHTML={{
                                 __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">${date(page.date)}</time>`)
                             }}></span>}
                             {/* Last Update Date */}
-                            {page.updated && <span class="level-item" dangerouslySetInnerHTML={{
+                            {false && page.updated && <span class="level-item" dangerouslySetInnerHTML={{
                                 __html: _p('article.updated_at', `<time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">${date(page.updated)}</time>`)
                             }}></span>}
                             {/* author */}
@@ -189,7 +189,7 @@ module.exports = class extends Component {
                 </article>
             </div>
 
-            {/* Donate button 
+            {/* Donate button
             {!index ? <Donates config={config} helper={helper} /> : null}
             */}
             {/* Post navigation */}

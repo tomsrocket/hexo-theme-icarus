@@ -1,17 +1,71 @@
 
+@font-face {
+  font-family: 'Londrina Solid';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/londrinasolid/v10/flUiRq6sw40kQEJxWNgkLuudGfvdDwYzlZw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* profile image modifier */
 .image.is-250 {
     max-width: 225px;
 }
+.image.is-400 {
+    max-width: 400px;
+}
 
-/* kuler selection #1 
+/* Frontpage headlines and category image styles */
+.fp-image {
+    width: 420px;
+    height: 300px;
+    overflow: hidden;
+    margin-top: -316px;
+    margin-left: auto;
+    z-index: 200;
+    position: relative;
+    +mobile() {
+        width: 210px;
+        height: 150px;
+        margin-top: -166px;
+    }
+}
+.fp-outer {
+    padding-top: 250px;
+    +mobile() {
+        padding-top: 125px;
+    }
+
+}
+.fp-outer > a.title {
+    display:block;
+    padding-left:20px;
+    font-family: 'Londrina Solid', cursive;
+    text-shadow: 0 0 4px #fff;
+    z-index: 1200;
+    position: relative;
+}
+.k-tag {
+    background-color: #eee;
+    border-radius: 5px;
+    width: 90%;
+    padding:5px 0;
+}
+
++from($tablet)
+    .navbar-brand {
+        display:none
+    }
+
+/* kuler selection #1
 .color-theme_c6e6bb2669de0e16af098107b44d2a89-1-hex { color: #8C3074; }
 .color-theme_c6e6bb2669de0e16af098107b44d2a89-2-hex { color: #F67435; }
 .color-theme_c6e6bb2669de0e16af098107b44d2a89-3-hex { color: #F2F2F2; }
 .color-theme_c6e6bb2669de0e16af098107b44d2a89-4-hex { color: #344F73; }
 .color-theme_c6e6bb2669de0e16af098107b44d2a89-5-hex { color: #16778C; }
 */
-/* categories colors 
+/* categories colors
 ul.menu-list > li:first-child {
     background-color: #F2BDCB;
 }
