@@ -70,7 +70,7 @@ module.exports = class extends Component {
                     {(() => {
 
                         // sort categories by top categories and sub categories
-                        var topCats = [];
+                        var topCats = {};
                         var subCats = {};
                         site.categories.forEach((category, i) => {
                             if (category.parent) {
@@ -80,14 +80,14 @@ module.exports = class extends Component {
                                 }
                                 subCats[parent].push( category );
                             } else {
-                                topCats.push(category);
+                                topCats[category.name] = category;
                             }
                         });
 
                         // provide some background information about our topics
                         const info = [
                             {
-                                // "Hintergrund"
+                                eid: "Hintergrund",
                                 hdl: "Hintergrundinformationen",
                                 col: "is-info",
                                 img: "gfx-book.png",
@@ -96,13 +96,14 @@ module.exports = class extends Component {
                                 + " und Verweise auf Organisationen und Projekte die sich mit Offenen Daten befassen gehören ebenfalls dazu."
                             },
                             {
-                                // "Datenquellen"
+                                eid: "Datenquellen",
                                 col: "is-primary",
                                 img: "gfx-jonglieren.png",
                                 txt: "Im Bereich 'Datenquellen' dreht es sich primär um Open-Data-Bezugsquellen. Außerdem um Daten, "
                                 + "die man für Datascience-Projekte oder im Themengebiet Datenjournalismus (DDJ) nutzen kann. Dieser Bereich ist unser Kerngebiet, und hier sind sehr viele Links zu finden. Diese sind daher grob nach Themengebieten gruppiert. Wir empfehlen, auch unsere Stichwort-Suchfunktion zu nutzen (oben rechts auf der Seite)."
                             },
                             {
+                                eid: "Tools",
                                 col: "is-warning",
                                 img: "gfx-rocket.png",
                                 txt: "'Tools', bzw. Anwendungen und Software die bei der Datenanalyse sowie Datenvisualisierung helfen können. Der Fokus liegt dabei auf Open-Souce-Entwicklungen. Gelistet haben wir auch proprietäre Cloud-Anwendungen (viele davon kostenfrei nutzbar), weil diese so schön einfach und bequem zum Einsatz zu bringen sind. Neu ist der Bereich 'Kollaboration', der nützliche Anwendungen enthält, die man für Online-Kollaboration mit Freunden und Kollegen nutzen kann."
@@ -111,9 +112,9 @@ module.exports = class extends Component {
 
                         // create some nifty html
                         const html = [];
-                        topCats.forEach((topCategory, i) => {
+                        info.forEach((catConfig, i) => {
                             const subcontent = [];
-                            const catConfig = info.shift();
+                            const topCategory = topCats[catConfig.eid]
 
                             subCats[topCategory._id].forEach((category, i) => {
 
