@@ -18,19 +18,10 @@ module.exports = class extends Component {
                 <article class={`smd card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
 
                     {/* Title */}
-                    <h1 class="title is-3 is-size-4-mobile has-text-centered">
-                        {page.title}
-                    </h1>
 
                     <div class="frontpage"><div class="content">
-                        {/* Content/Excerpt */}
-                        {page.content ? <div dangerouslySetInnerHTML={{ __html: page.content }}></div> : ""}
 
                         <div class="card-content">
-                            <div class="has-text-centered">
-                                <b>Die Linkliste für Datascience, Datenvisualisierung und Open Data.</b>
-                                <br /><br />
-                            </div>
                             <nav class="level">
                                 <div class="level-item has-text-centered flex-shrink-1">
                                     <div>
@@ -38,30 +29,28 @@ module.exports = class extends Component {
                                     </div>
                                 </div>
                             </nav>
-                            <nav class="level is-mobile">
-                                <div class="level-item has-text-centered is-marginless">
-                                    <div class="k-tag">
-                                        <p class="heading">Links</p>
-                                        <a href="/archives"><p class="title">{postCount}</p></a>
-                                    </div>
+                            <div class="has-text-centered">
+                                <h1 class="title is-3 is-size-4-mobile has-text-centered">
+                                    <b>Die Linkliste für Datascience,<br />Datenvisualisierung und Open Data.</b>
+                                </h1>
+                            </div>
+
+                            <div class="columns navbar-main is-mobile is-centered is-gapless">
+                                <div class="column is-half">
+                                    <input class="input search" type="text" placeholder="Suchbegriff" />
                                 </div>
-                                <div class="level-item has-text-centered is-marginless">
-                                    <div class="k-tag">
-                                        <p class="heading">Kategorien</p>
-                                        <a href="/categories"><p class="title">{categoryCount}</p></a>
+                                <div class="column is-narrow search-icon">
+                                    <a class="search" title="Suche" href="javascript:;"><i class="fas fa-search"></i></a>
                                 </div>
-                                </div>
-                                <div class="level-item has-text-centered is-marginless">
-                                    <div class="k-tag">
-                                        <p class="heading">Tags</p>
-                                        <a href="/tags"><p class="title">{tagCount}</p></a>
-                                    </div></div>
-                            </nav>
+                            </div>
                         </div>
 
-                        <br />
+
+
                         <div id="themen" class="has-text-centered mb-3">
-                        Unsere Themen:
+
+                            {/* Content/Excerpt */}
+
                         </div>
 
                     </div></div>
@@ -127,7 +116,7 @@ module.exports = class extends Component {
 
                                 subcontent.push(
                                     <a class="link-muted mr-2" title={linkCount + " Links"} href={url_for(category.path)}>
-                                        <span class={"tag mb-1 " + catConfig.col + " " + cls}>{category.name}</span>
+                                        <span class={"tag mb-2 " + catConfig.col + " " + cls}>{category.name}</span>
                                     </a>
                                 );
                             });
@@ -142,7 +131,7 @@ module.exports = class extends Component {
                                     <div class={"notification " + catConfig.col + " is-light"}>
                                         <div class="alert alert-info" role="alert">
                                             <div class="my-3 has-text-black intro">{catConfig.txt}</div>
-                                            <div class="mb-2">Unterkategorien:</div>
+                                            <div class="mb-2">Klicke eine Unterkategorie:</div>
                                             {subcontent}
                                         </div>
                                     </div>
@@ -152,6 +141,47 @@ module.exports = class extends Component {
                         return html;
                     })()}
 
+
+                        <br /> <br /> <br /><br /><br />
+
+                        <div class="columns">
+                            <div class="column is-2">
+                                {/*<!-- Photo by Italo Melo from Pexels -->*/}
+                                <img style="border-radius: 50px;" src="images/testimonial-jp.png" /></div>
+                            <div class="column">
+                                "Daten werden für viele Zwecke benötigt: Für Recherchen, zur Umsetzung von Geschäftsideen, in der Forschung, als Hobby, oder weil man mal etwas nachschauen möchte.
+                                Spaß Mit Daten ist mein Startpunkt für jede Daten-Suche."
+                                <i> &nbsp; - Foto von Italo Melo @ Pexels</i>
+
+                            </div>
+                            {page.content ? <p dangerouslySetInnerHTML={{ __html: page.content }}></p> : ""}                        </div>
+
+                        <br /> <br /> <br /><br />
+
+
+                        <div class="card-content">
+                            <nav class="level is-mobile">
+                                <div class="level-item has-text-centered is-marginless">
+                                    <div class="k-tag">
+                                        <p class="heading">Links</p>
+                                        <a href="/archives"><p class="title">{postCount}</p></a>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered is-marginless">
+                                    <div class="k-tag">
+                                        <p class="heading">Kategorien</p>
+                                        <a href="/categories"><p class="title">{categoryCount}</p></a>
+                                </div>
+                                </div>
+                                <div class="level-item has-text-centered is-marginless">
+                                    <div class="k-tag">
+                                        <p class="heading">Tags</p>
+                                        <a href="/tags"><p class="title">{tagCount}</p></a>
+                                    </div></div>
+                            </nav>
+                        </div>
+
+                        <br /> <br /> <br />
 
 
                 </article>
