@@ -144,7 +144,7 @@ module.exports = class extends Component {
 
                         <br /> <br /> <br /><br /><br />
 
-                        <div class="columns">
+                        <div class="columns is-mobile">
                             <div class="column is-2">
                                 {/*<!-- Photo by Italo Melo from Pexels -->*/}
                                 <img style="border-radius: 50px;" src="images/testimonial-jp.png" /></div>
